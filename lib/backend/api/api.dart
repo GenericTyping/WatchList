@@ -1,9 +1,17 @@
 import 'dart:async';
 
-class ApiEnv {
-  const ApiEnv._();
+import 'package:watchlist/backend/config.dart';
 
-  static const live = ApiEnv._();
+class ApiEnv {
+  const ApiEnv._({
+    this.movieDbApiKey,
+  });
+
+  final String movieDbApiKey;
+
+  static const live = ApiEnv._(
+    movieDbApiKey: kMovieDbApiKey,
+  );
 }
 
 abstract class Api {

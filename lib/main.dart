@@ -3,7 +3,10 @@ import 'package:touch_indicator/touch_indicator.dart';
 import 'package:watchlist/ux/containers/main_container.dart';
 import 'package:watchlist/ux/theme.dart';
 
-void main() => runApp(WatchList());
+void main() {
+  // TODO: Init backend.
+  runApp(WatchList());
+}
 
 class WatchList extends StatelessWidget {
   @override
