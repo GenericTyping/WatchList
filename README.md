@@ -1,16 +1,11 @@
-# watchlist
+# GenericTyping - Watch List
 
-A new Flutter project.
+Search and keep track of your favorite movies.
+
+This is a project for the live programming series 'Live Coding' on the YouTube channel [GenericTyping](https://www.youtube.com/channel/UC7REbKIaG59pGxW78gHZfZw).
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
+For help getting started with Flutter, view the
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
