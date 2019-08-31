@@ -1,8 +1,5 @@
-import 'package:app/backend/api/api.dart';
 
-export 'playlist_repository.dart';
-export 'user_repository.dart';
-export 'video_repository.dart';
+import 'package:watchlist/backend/api/api.dart';
 
 abstract class Repository {
   Repository(this.api);
