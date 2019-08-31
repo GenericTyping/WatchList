@@ -1,5 +1,9 @@
 import 'package:recase/recase.dart';
 
+// Typedefs
+typedef FromJson<T> = T Function(Map<String, dynamic> json);
+
+// Functions
 dynamic convertKeysToTitleCase(dynamic source) {
   if (source is Map<String, dynamic>) {
     return source.map(

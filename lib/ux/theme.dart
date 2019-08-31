@@ -11,6 +11,7 @@ class AppTheme {
   static const fontWeightSemiBold = FontWeight.w600;
   static const fontWeightBold = FontWeight.w700;
 
+  static const colorTextPrimary = Colors.white;
   static const colorContrasting = Colors.white;
   static const colorAccent = colorGreen;
   static const colorBackground = Color(0xFF0A161B);
@@ -19,10 +20,10 @@ class AppTheme {
   static CupertinoThemeData theme() {
     return const CupertinoThemeData(
       brightness: Brightness.dark,
-      scaffoldBackgroundColor: colorBackground,
       primaryColor: colorGreen,
       primaryContrastingColor: colorContrasting,
       barBackgroundColor: colorBackground,
+      scaffoldBackgroundColor: colorBackground,
     );
   }
 }
