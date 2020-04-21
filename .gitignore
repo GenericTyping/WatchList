@@ -75,3 +75,4 @@
 # Secret config files
 lib/backend/config.dart
 .vscode/settings.json
+.flutter-plugins-dependencies

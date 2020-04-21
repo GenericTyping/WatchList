@@ -28,6 +28,7 @@ class AppStateStore extends Store {
 
     return data.map((json) => SavedMovie.fromJson(json));
   }
+
   set savedMovies(List<SavedMovie> value) {
     assert(value != null, 'Value cannot be null.');
 

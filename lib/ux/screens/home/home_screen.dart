@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:watchlist/backend/backend.dart';
-import 'package:watchlist/backend/models/models.dart';
 import 'package:watchlist/ux/theme.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,8 +9,8 @@ class HomeScreen extends StatelessWidget {
     return CupertinoPageScaffold(
       child: CustomScrollView(
         slivers: <Widget>[
-          CupertinoSliverNavigationBar(
-            largeTitle: const Text('Watch List'),
+          const CupertinoSliverNavigationBar(
+            largeTitle: Text('Watch List'),
           ),
           SliverToBoxAdapter(
             child: Column(
@@ -21,7 +20,7 @@ class HomeScreen extends StatelessWidget {
                   Text(savedMovie.movie.title),
                   Text(
                     'Rating: ${savedMovie.rating}, currently watching: ${savedMovie.isWatching}',
-                    style: TextStyle(color: AppTheme.colorAccent),
+                    style: const TextStyle(color: AppTheme.colorAccent),
                   ),
                   const SizedBox(height: 4),
                   CupertinoButton.filled(

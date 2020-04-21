@@ -12,15 +12,12 @@ SearchResult _$SearchResultFromJson(Map<String, dynamic> json) {
     totalResults: json['total_results'] as int,
     totalPages: json['total_pages'] as int,
     results: (json['results'] as List)
-        ?.map((e) => e == null
-            ? null
-            : SearchResultMovie.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null ? null : SearchResultMovie.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }
 
-Map<String, dynamic> _$SearchResultToJson(SearchResult instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SearchResultToJson(SearchResult instance) => <String, dynamic>{
       'page': instance.page,
       'total_results': instance.totalResults,
       'total_pages': instance.totalPages,
@@ -46,8 +43,7 @@ SearchResultMovie _$SearchResultMovieFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$SearchResultMovieToJson(SearchResultMovie instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SearchResultMovieToJson(SearchResultMovie instance) => <String, dynamic>{
       'popularity': instance.popularity,
       'vote_count': instance.voteCount,
       'video': instance.video,

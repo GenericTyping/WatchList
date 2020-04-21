@@ -12,13 +12,10 @@ Movie _$MovieFromJson(Map<String, dynamic> json) {
     backdropPath: json['backdrop_path'] as String,
     belongsToCollection: json['belongs_to_collection'] == null
         ? null
-        : MovieCollection.fromJson(
-            json['belongs_to_collection'] as Map<String, dynamic>),
+        : MovieCollection.fromJson(json['belongs_to_collection'] as Map<String, dynamic>),
     budget: json['budget'] as int,
-    genres: (json['genres'] as List)
-        ?.map(
-            (e) => e == null ? null : Genre.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    genres:
+        (json['genres'] as List)?.map((e) => e == null ? null : Genre.fromJson(e as Map<String, dynamic>))?.toList(),
     homepage: json['homepage'] as String,
     id: json['id'] as int,
     imdbId: json['imdb_id'] as String,
@@ -28,22 +25,16 @@ Movie _$MovieFromJson(Map<String, dynamic> json) {
     popularity: (json['popularity'] as num)?.toDouble(),
     posterPath: json['poster_path'] as String,
     productionCompanies: (json['production_companies'] as List)
-        ?.map((e) => e == null
-            ? null
-            : ProductionCompany.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null ? null : ProductionCompany.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     productionCountries: (json['production_countries'] as List)
-        ?.map((e) => e == null
-            ? null
-            : ProductionCountry.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null ? null : ProductionCountry.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     releaseDate: json['release_date'] as String,
     revenue: json['revenue'] as int,
     runtime: json['runtime'] as int,
     spokenLanguages: (json['spoken_languages'] as List)
-        ?.map((e) => e == null
-            ? null
-            : SpokenLanguage.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null ? null : SpokenLanguage.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     status: json['status'] as String,
     tagline: json['tagline'] as String,
@@ -68,15 +59,12 @@ Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{
       'overview': instance.overview,
       'popularity': instance.popularity,
       'poster_path': instance.posterPath,
-      'production_companies':
-          instance.productionCompanies?.map((e) => e?.toJson())?.toList(),
-      'production_countries':
-          instance.productionCountries?.map((e) => e?.toJson())?.toList(),
+      'production_companies': instance.productionCompanies?.map((e) => e?.toJson())?.toList(),
+      'production_countries': instance.productionCountries?.map((e) => e?.toJson())?.toList(),
       'release_date': instance.releaseDate,
       'revenue': instance.revenue,
       'runtime': instance.runtime,
-      'spoken_languages':
-          instance.spokenLanguages?.map((e) => e?.toJson())?.toList(),
+      'spoken_languages': instance.spokenLanguages?.map((e) => e?.toJson())?.toList(),
       'status': instance.status,
       'tagline': instance.tagline,
       'title': instance.title,
@@ -94,8 +82,7 @@ MovieCollection _$MovieCollectionFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$MovieCollectionToJson(MovieCollection instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$MovieCollectionToJson(MovieCollection instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'poster_path': instance.posterPath,
@@ -123,8 +110,7 @@ ProductionCompany _$ProductionCompanyFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ProductionCompanyToJson(ProductionCompany instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ProductionCompanyToJson(ProductionCompany instance) => <String, dynamic>{
       'id': instance.id,
       'logo_path': instance.logoPath,
       'name': instance.name,
@@ -138,8 +124,7 @@ ProductionCountry _$ProductionCountryFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ProductionCountryToJson(ProductionCountry instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ProductionCountryToJson(ProductionCountry instance) => <String, dynamic>{
       'iso31661': instance.iso31661,
       'name': instance.name,
     };
@@ -151,8 +136,7 @@ SpokenLanguage _$SpokenLanguageFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$SpokenLanguageToJson(SpokenLanguage instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SpokenLanguageToJson(SpokenLanguage instance) => <String, dynamic>{
       'iso6391': instance.iso6391,
       'name': instance.name,
     };

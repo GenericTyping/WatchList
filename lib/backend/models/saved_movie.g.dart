@@ -8,17 +8,13 @@ part of 'saved_movie.dart';
 
 SavedMovie _$SavedMovieFromJson(Map<String, dynamic> json) {
   return SavedMovie(
-    movie: json['movie'] == null
-        ? null
-        : Movie.fromJson(json['movie'] as Map<String, dynamic>),
-    watchingStatus:
-        _$enumDecodeNullable(_$WatchingStatusEnumMap, json['watching_status']),
+    movie: json['movie'] == null ? null : Movie.fromJson(json['movie'] as Map<String, dynamic>),
+    watchingStatus: _$enumDecodeNullable(_$WatchingStatusEnumMap, json['watching_status']),
     rating: json['rating'] as int,
   );
 }
 
-Map<String, dynamic> _$SavedMovieToJson(SavedMovie instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SavedMovieToJson(SavedMovie instance) => <String, dynamic>{
       'movie': instance.movie?.toJson(),
       'watching_status': _$WatchingStatusEnumMap[instance.watchingStatus],
       'rating': instance.rating,
@@ -34,9 +30,7 @@ T _$enumDecode<T>(
         '${enumValues.values.join(', ')}');
   }
 
-  final value = enumValues.entries
-      .singleWhere((e) => e.value == source, orElse: () => null)
-      ?.key;
+  final value = enumValues.entries.singleWhere((e) => e.value == source, orElse: () => null)?.key;
 
   if (value == null && unknownValue == null) {
     throw ArgumentError('`$source` is not one of the supported values: '

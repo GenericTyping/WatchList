@@ -28,5 +28,4 @@ class Backend {
 
   final AppStateStore appState;
   final MovieRepository movieRepository;
-
 }
