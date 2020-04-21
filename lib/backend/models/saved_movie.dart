@@ -5,14 +5,11 @@ import 'package:watchlist/backend/models/models.dart';
 part 'saved_movie.g.dart';
 
 enum WatchingStatus {
-  notWatching,
-  currentlyWatching,
+  notWatched,
+  watched,
 }
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class SavedMovie {
   const SavedMovie({
     @required this.movie,
@@ -21,14 +18,14 @@ class SavedMovie {
   });
 
   const SavedMovie.empty({@required this.movie})
-      : watchingStatus = WatchingStatus.notWatching,
+      : watchingStatus = WatchingStatus.notWatched,
         rating = null;
 
   final Movie movie;
   final WatchingStatus watchingStatus;
   final int rating;
 
-  bool get isWatching => watchingStatus == WatchingStatus.currentlyWatching;
+  bool get isWatched => watchingStatus == WatchingStatus.watched;
   bool get hasRating => rating != null;
   double get ratingPercentage => rating / 10.0;
 

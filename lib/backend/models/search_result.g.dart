@@ -6,13 +6,17 @@ part of 'search_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SearchResult _$SearchResultFromJson(Map<String, dynamic> json) {
+SearchResult _$SearchResultFromJson(Map json) {
   return SearchResult(
     page: json['page'] as int,
     totalResults: json['total_results'] as int,
     totalPages: json['total_pages'] as int,
     results: (json['results'] as List)
-        ?.map((e) => e == null ? null : SearchResultMovie.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null
+            ? null
+            : SearchResultMovie.fromJson((e as Map)?.map(
+                (k, e) => MapEntry(k as String, e),
+              )))
         ?.toList(),
   );
 }
@@ -24,7 +28,7 @@ Map<String, dynamic> _$SearchResultToJson(SearchResult instance) => <String, dyn
       'results': instance.results?.map((e) => e?.toJson())?.toList(),
     };
 
-SearchResultMovie _$SearchResultMovieFromJson(Map<String, dynamic> json) {
+SearchResultMovie _$SearchResultMovieFromJson(Map json) {
   return SearchResultMovie(
     popularity: (json['popularity'] as num)?.toDouble(),
     voteCount: json['vote_count'] as int,

@@ -10,10 +10,12 @@ class AppStateStore {
     @required this.savedMovies,
   }) : super();
 
-  static const _kStorage = JsonFileStorage(filename: 'watch_list_app_state_store_2.json');
+  static const _kStorage = JsonFileStorage(filename: 'watch_list_app_state_store.json');
   static const _kSaveTimeout = Duration(milliseconds: 500);
 
   static const _kSavedMoviesKey = 'savedMovies';
+
+  static final _kSavedMoviesDefaultValue = KtList<SavedMovie>.empty();
 
   static Future<AppStateStore> init() async {
     final data = await PersistedData.load(_kStorage, _kSaveTimeout);
@@ -22,13 +24,19 @@ class AppStateStore {
     return AppStateStore._(
       savedMovies: bsf.generateKtListForKey<SavedMovie>(
         _kSavedMoviesKey,
-        defaultValue: KtList.empty(),
+        defaultValue: _kSavedMoviesDefaultValue,
         fromJson: (json) => SavedMovie.fromJson(json),
       ),
     );
   }
 
   final BehaviorSubject<KtList<SavedMovie>> savedMovies;
+
+  void clear() {
+    print('Clearing local storage!');
+
+    savedMovies.value = _kSavedMoviesDefaultValue;
+  }
 
   void dispose() {
     savedMovies.close();

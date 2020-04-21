@@ -2,10 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'search_result.g.dart';
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class SearchResult {
   SearchResult({
     this.page,
@@ -24,10 +21,7 @@ class SearchResult {
   Map<String, dynamic> toJson() => _$SearchResultToJson(this);
 }
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class SearchResultMovie {
   SearchResultMovie({
     this.popularity,

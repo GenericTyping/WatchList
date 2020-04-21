@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:watchlist/backend/api/mock/mock_saved_movies.dart';
 import 'package:watchlist/backend/backend.dart';
 import 'package:watchlist/backend/models/models.dart';
 import 'package:watchlist/ux/theme.dart';
 import 'package:watchlist/ux/widgets/value_stream_builder.dart';
 
+// FIXME: UI is temporary.
 class HomeScreen extends StatelessWidget {
+  const HomeScreen();
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -20,28 +22,36 @@ class HomeScreen extends StatelessWidget {
             child: ValueStreamBuilder<KtList<SavedMovie>>(
               valueStream: Backend.of(context).movieRepository.savedMovies,
               builder: (context, savedMovies) {
-                final movies = savedMovies.isNotEmpty() ? savedMovies.asList() : mockSavedMovies;
+                if (savedMovies.isEmpty()) {
+                  return const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text('No saved movies.\nClick on a search result to save the movie.'),
+                  );
+                }
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Text('top'),
-                    for (final savedMovie in movies) ...[
-                      Text(savedMovie.movie.title),
-                      Text(
-                        'Rating: ${savedMovie.rating}, currently watching: ${savedMovie.isWatching}',
-                        style: const TextStyle(color: AppTheme.colorAccent),
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Divider(
+                        height: 32,
+                        color: AppTheme.colorContrasting.withOpacity(0.5),
                       ),
-                      const SizedBox(height: 4),
-                      CupertinoButton.filled(
-                        onPressed: () {
-                          Backend.of(context).movieRepository.addSavedMovie(savedMovie);
-                        },
-                        child: const Text('Create duplicate.'),
-                      ),
-                      const SizedBox(height: 32),
+                      for (final savedMovie in savedMovies.iter) ...[
+                        Text(savedMovie.movie.title),
+                        Text(
+                          'Rating: ${savedMovie.rating}, currently watching: ${savedMovie.isWatched}',
+                          style: const TextStyle(color: AppTheme.colorAccent),
+                        ),
+                        const SizedBox(height: 4),
+                        Divider(
+                          height: 32,
+                          color: AppTheme.colorContrasting.withOpacity(0.5),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 );
               },
             ),

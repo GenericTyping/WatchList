@@ -6,9 +6,13 @@ part of 'saved_movie.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SavedMovie _$SavedMovieFromJson(Map<String, dynamic> json) {
+SavedMovie _$SavedMovieFromJson(Map json) {
   return SavedMovie(
-    movie: json['movie'] == null ? null : Movie.fromJson(json['movie'] as Map<String, dynamic>),
+    movie: json['movie'] == null
+        ? null
+        : Movie.fromJson((json['movie'] as Map)?.map(
+            (k, e) => MapEntry(k as String, e),
+          )),
     watchingStatus: _$enumDecodeNullable(_$WatchingStatusEnumMap, json['watching_status']),
     rating: json['rating'] as int,
   );
@@ -51,6 +55,6 @@ T _$enumDecodeNullable<T>(
 }
 
 const _$WatchingStatusEnumMap = {
-  WatchingStatus.notWatching: 'notWatching',
-  WatchingStatus.currentlyWatching: 'currentlyWatching',
+  WatchingStatus.notWatched: 'notWatching',
+  WatchingStatus.watched: 'currentlyWatching',
 };

@@ -6,16 +6,23 @@ part of 'movie.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Movie _$MovieFromJson(Map<String, dynamic> json) {
+Movie _$MovieFromJson(Map json) {
   return Movie(
     adult: json['adult'] as bool,
     backdropPath: json['backdrop_path'] as String,
     belongsToCollection: json['belongs_to_collection'] == null
         ? null
-        : MovieCollection.fromJson(json['belongs_to_collection'] as Map<String, dynamic>),
+        : MovieCollection.fromJson((json['belongs_to_collection'] as Map)?.map(
+            (k, e) => MapEntry(k as String, e),
+          )),
     budget: json['budget'] as int,
-    genres:
-        (json['genres'] as List)?.map((e) => e == null ? null : Genre.fromJson(e as Map<String, dynamic>))?.toList(),
+    genres: (json['genres'] as List)
+        ?.map((e) => e == null
+            ? null
+            : Genre.fromJson((e as Map)?.map(
+                (k, e) => MapEntry(k as String, e),
+              )))
+        ?.toList(),
     homepage: json['homepage'] as String,
     id: json['id'] as int,
     imdbId: json['imdb_id'] as String,
@@ -25,16 +32,28 @@ Movie _$MovieFromJson(Map<String, dynamic> json) {
     popularity: (json['popularity'] as num)?.toDouble(),
     posterPath: json['poster_path'] as String,
     productionCompanies: (json['production_companies'] as List)
-        ?.map((e) => e == null ? null : ProductionCompany.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null
+            ? null
+            : ProductionCompany.fromJson((e as Map)?.map(
+                (k, e) => MapEntry(k as String, e),
+              )))
         ?.toList(),
     productionCountries: (json['production_countries'] as List)
-        ?.map((e) => e == null ? null : ProductionCountry.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null
+            ? null
+            : ProductionCountry.fromJson((e as Map)?.map(
+                (k, e) => MapEntry(k as String, e),
+              )))
         ?.toList(),
     releaseDate: json['release_date'] as String,
     revenue: json['revenue'] as int,
     runtime: json['runtime'] as int,
     spokenLanguages: (json['spoken_languages'] as List)
-        ?.map((e) => e == null ? null : SpokenLanguage.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null
+            ? null
+            : SpokenLanguage.fromJson((e as Map)?.map(
+                (k, e) => MapEntry(k as String, e),
+              )))
         ?.toList(),
     status: json['status'] as String,
     tagline: json['tagline'] as String,
@@ -73,7 +92,7 @@ Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{
       'vote_count': instance.voteCount,
     };
 
-MovieCollection _$MovieCollectionFromJson(Map<String, dynamic> json) {
+MovieCollection _$MovieCollectionFromJson(Map json) {
   return MovieCollection(
     id: json['id'] as int,
     name: json['name'] as String,
@@ -89,7 +108,7 @@ Map<String, dynamic> _$MovieCollectionToJson(MovieCollection instance) => <Strin
       'backdrop_path': instance.backdropPath,
     };
 
-Genre _$GenreFromJson(Map<String, dynamic> json) {
+Genre _$GenreFromJson(Map json) {
   return Genre(
     id: json['id'] as int,
     name: json['name'] as String,
@@ -101,7 +120,7 @@ Map<String, dynamic> _$GenreToJson(Genre instance) => <String, dynamic>{
       'name': instance.name,
     };
 
-ProductionCompany _$ProductionCompanyFromJson(Map<String, dynamic> json) {
+ProductionCompany _$ProductionCompanyFromJson(Map json) {
   return ProductionCompany(
     id: json['id'] as int,
     logoPath: json['logo_path'] as String,
@@ -117,7 +136,7 @@ Map<String, dynamic> _$ProductionCompanyToJson(ProductionCompany instance) => <S
       'origin_country': instance.originCountry,
     };
 
-ProductionCountry _$ProductionCountryFromJson(Map<String, dynamic> json) {
+ProductionCountry _$ProductionCountryFromJson(Map json) {
   return ProductionCountry(
     iso31661: json['iso31661'] as String,
     name: json['name'] as String,
@@ -129,7 +148,7 @@ Map<String, dynamic> _$ProductionCountryToJson(ProductionCountry instance) => <S
       'name': instance.name,
     };
 
-SpokenLanguage _$SpokenLanguageFromJson(Map<String, dynamic> json) {
+SpokenLanguage _$SpokenLanguageFromJson(Map json) {
   return SpokenLanguage(
     iso6391: json['iso6391'] as String,
     name: json['name'] as String,

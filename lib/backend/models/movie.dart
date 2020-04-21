@@ -3,10 +3,7 @@ import 'package:meta/meta.dart';
 
 part 'movie.g.dart';
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Movie {
   const Movie({
     @required this.adult,
@@ -67,10 +64,7 @@ class Movie {
   Map<String, dynamic> toJson() => _$MovieToJson(this);
 }
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class MovieCollection {
   const MovieCollection({
     @required this.id,
@@ -89,10 +83,7 @@ class MovieCollection {
   Map<String, dynamic> toJson() => _$MovieCollectionToJson(this);
 }
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Genre {
   const Genre({
     @required this.id,
@@ -107,10 +98,7 @@ class Genre {
   Map<String, dynamic> toJson() => _$GenreToJson(this);
 }
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class ProductionCompany {
   const ProductionCompany({
     @required this.id,
@@ -129,10 +117,7 @@ class ProductionCompany {
   Map<String, dynamic> toJson() => _$ProductionCompanyToJson(this);
 }
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class ProductionCountry {
   const ProductionCountry({
     @required this.iso31661,
@@ -147,10 +132,7 @@ class ProductionCountry {
   Map<String, dynamic> toJson() => _$ProductionCountryToJson(this);
 }
 
-@JsonSerializable(
-  explicitToJson: true,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class SpokenLanguage {
   const SpokenLanguage({
     @required this.iso6391,

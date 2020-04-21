@@ -10,6 +10,8 @@ import 'package:watchlist/ux/theme.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final backend = await Backend.init(const MovieDbApi(ApiEnv.live));
+  // FIXME: Will reset local storage every time app is run.
+  backend.appState.clear();
   runApp(WatchList(backend: backend));
 }
 

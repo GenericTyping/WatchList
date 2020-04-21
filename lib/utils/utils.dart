@@ -16,18 +16,18 @@ typedef Mapper<T, R> = R Function(T value);
 Mapper<T, T> id<T>() => (value) => value;
 Mapper<dynamic, T> castDynamic<T>() => (value) => value as T;
 
-dynamic convertKeysToTitleCase(dynamic source) {
+dynamic _convertKeysToTitleCase(dynamic source) {
   if (source is Map<String, dynamic>) {
     return source.map(
       (key, value) {
         return MapEntry(
           ReCase(key).camelCase,
-          convertKeysToTitleCase(value),
+          _convertKeysToTitleCase(value),
         );
       },
     );
-  } else if (source is List) {
-    return source.map(convertKeysToTitleCase).toList();
+  } else if (source is Iterable) {
+    return source.map(_convertKeysToTitleCase).toList();
   } else {
     return source;
   }
@@ -42,6 +42,12 @@ class Tuple<T1, T2> {
 }
 
 // Extensions
+extension StringDynamicMapUtils on Map<String, dynamic> {
+  Map<String, dynamic> toTitleCase() {
+    return _convertKeysToTitleCase(this) as Map<String, dynamic>;
+  }
+}
+
 extension NumUtils on num {
   int roundToNearest(int rounding) {
     return (this / rounding).round() * rounding;
@@ -71,7 +77,11 @@ extension NumUtils on num {
 }
 
 extension IterableUtils<T> on Iterable<T> {
-  T get firstOrNull => length == 0 ? null : first;
+  Iterable<T> toTitleCase() {
+    return _convertKeysToTitleCase(this) as Iterable<T>;
+  }
+
+  T get firstOrNull => isEmpty ? null : first;
 
   Stream<void> asyncForEach(Future<void> Function(T element) f) async* {
     for (final element in this) {

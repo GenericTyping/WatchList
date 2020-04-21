@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:watchlist/ux/screens/home/home_screen.dart';
+import 'package:watchlist/ux/screens/search/search_screen.dart';
 
 class MainContainer extends StatelessWidget {
   @override
@@ -9,17 +10,24 @@ class MainContainer extends StatelessWidget {
       tabBar: CupertinoTabBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.bluetooth),
-            title: const Text('PageOne'),
+            icon: Icon(CupertinoIcons.play_arrow),
+            title: const Text('List'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.bus),
-            title: const Text('PageTwo'),
+            icon: Icon(CupertinoIcons.search),
+            title: const Text('Search'),
           ),
         ],
       ),
       tabBuilder: (context, index) {
-        return HomeScreen();
+        switch (index) {
+          case 0:
+            return const HomeScreen();
+          case 1:
+            return const SearchScreen();
+          default:
+            throw UnsupportedError('Screen does not exist for index $index');
+        }
       },
     );
   }
