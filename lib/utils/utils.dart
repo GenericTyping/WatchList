@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
+import 'package:rxdart/rxdart.dart';
 
 // Typedefs
 typedef FromJson<T> = T Function(Map<String, dynamic> json);
@@ -11,6 +14,7 @@ typedef Mapper<T, R> = R Function(T value);
 
 // Functions
 Mapper<T, T> id<T>() => (value) => value;
+Mapper<dynamic, T> castDynamic<T>() => (value) => value as T;
 
 dynamic convertKeysToTitleCase(dynamic source) {
   if (source is Map<String, dynamic>) {
@@ -116,6 +120,27 @@ extension ListUtils<T> on List<T> {
   }
 }
 
+extension ListenableUtils on Listenable {
+  Future<void> waitForValue() {
+    final completer = Completer<void>();
+    addListener(completer.complete);
+    return completer.future;
+  }
+}
+
 extension StreamUtils<T> on Stream<T> {
   Future<T> get firstNonNull => where((value) => value != null).single;
+
+  ValueStream<T> toValueStream() {
+    StreamSubscription subscription;
+    final behaviorSubject = BehaviorSubject<T>(onCancel: subscription.cancel);
+    subscription = listen(behaviorSubject.add);
+    return behaviorSubject;
+  }
+}
+
+extension ListBehaviorSubjectUtils<T> on BehaviorSubject<KtList<T>> {
+  void addToList(T element) => add(value.plusElement(element));
+  void removeFromList(T element) => add(value.minusElement(element));
+  void removeFromListAtIndex(int index) => add(value.filterIndexed((i, _) => i != index));
 }

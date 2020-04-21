@@ -1,12 +1,9 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:watchlist/utils/utils.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 // Typedefs
 typedef ContextBuilder<T> = T Function(BuildContext context);
+typedef ContextValueBuilder<T> = Widget Function(BuildContext context, T value);
 
 // Extensions
 extension DurationUxUtils on Duration {
@@ -95,14 +92,6 @@ extension DoubleUxUtils on double {
   String formatAsPercentage() {
     final multiplied = (this * 100).round();
     return '${multiplied.roundToNearest(1)}';
-  }
-}
-
-extension ListenableUtils on Listenable {
-  Future<void> waitForValue() {
-    final completer = Completer<void>();
-    addListener(completer.complete);
-    return completer.future;
   }
 }
 

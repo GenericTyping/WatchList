@@ -1,30 +1,24 @@
+import 'package:kt_dart/kt.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:watchlist/backend/api/api.dart';
+import 'package:watchlist/backend/app_state_store.dart';
 import 'package:watchlist/backend/models/models.dart';
 import 'package:watchlist/backend/repositories/repository.dart';
-import 'package:watchlist/backend/stores/store.dart';
+import 'package:watchlist/utils/utils.dart';
 
 class MovieRepository extends Repository {
   MovieRepository(Api api, this.appState) : super(api);
 
   final AppStateStore appState;
 
-  // TODO: Add saved movies stream to store and then repository.
-  // OR: make repository listenable.
-
-  Iterable<SavedMovie> getAllSavedMovies() {
-    return appState.savedMovies;
-  }
+  ValueStream<KtList<SavedMovie>> get savedMovies => appState.savedMovies;
 
   SavedMovie getSavedMovie(int id) {
-    return appState.savedMovies.firstWhere(
-      (savedMovie) => savedMovie.movie.id == id,
-      orElse: () => null,
-    );
+    return savedMovies.value.find((savedMovie) => savedMovie.movie.id == id);
   }
 
-  // FIXME: Is temporary.
   void addSavedMovie(SavedMovie savedMovie) {
-    appState.savedMovies = [...appState.savedMovies, savedMovie];
+    appState.savedMovies.addToList(savedMovie);
   }
 
   Future<Movie> getMovie(int id) async {

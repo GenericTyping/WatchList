@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:provider/provider.dart';
 import 'package:watchlist/backend/api/api.dart';
+import 'package:watchlist/backend/app_state_store.dart';
 import 'package:watchlist/backend/repositories/repository.dart';
-import 'package:watchlist/backend/stores/store.dart';
 
 export 'api/api.dart';
 
@@ -23,7 +23,7 @@ class Backend {
   }
 
   static Backend of(BuildContext context) {
-    return Provider.of<Backend>(context);
+    return Provider.of<Backend>(context, listen: false);
   }
 
   final AppStateStore appState;

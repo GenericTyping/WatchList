@@ -12,8 +12,10 @@ dependencies:
   cupertino_icons: ^0.1.3
   http: ^0.12.0+4
   json_annotation: ^3.0.1
+  kt_dart: ^0.7.0+1
   provider: ^4.0.5
   recase: ^3.0.0
+  rxdart: ^0.24.0
   state_persistence: ^0.0.7
   touch_indicator: ^1.0.3
 
